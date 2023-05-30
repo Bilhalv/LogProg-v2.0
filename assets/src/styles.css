@@ -2,42 +2,72 @@ body {
   background-color: #21152b;
   color: whitesmoke;
 }
+header{
+  background-color: #2c1d3a;
+  width: 100%;
+  font-size: large;
+  text-align: center;
+  padding: 9px;
+  position: sticky;
+  margin: -10px;
+  box-shadow: 0px 0px 5px #000;
+}
+main{
+  margin-top: 20px;
+}
+.resultado{
+  margin-top: 20px;
+  background-color: #382449;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px #1f1f1f;
+}
+section{
+  background-color: #382449;
+  padding: 20px;
+  width: fit-content;
+  border-radius: 15px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 5px #1f1f1f;
+}
 select {
+  transition: all 0.5s;
   background-color: #2c1d3a;
   color: whitesmoke;
   border-radius: 15px;
+  border:none;
+  padding: 5px;
 }
-option:hover,
+select:hover,
 button:hover {
   background-color: #4e3366;
 }
 button {
-  background-color: #2c1d3a;
+  transition: all 0.5s;
+  background-color: #432b57;
   color: whitesmoke;
   border-radius: 15px;
-  border: 2px #2c1d3a solid;
+  padding: 5px;
+  border: none;
 }
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  border-color: #2c1d3a;
-  border-radius: 15px;
+  gap: 5px;
 }
 
 .article {
   border: 1px solid #ccc;
   padding: 10px;
   width: 300px;
-  background-color: #382449;
-  border: #432b57;
+  background-color: #2c1d3a;
+  border: #432b57 2px solid;
   border-radius: 15px;
 }
-
 .article h3 {
   margin-top: 0;
 }
-
 .article p {
-  margin-bottom: 0;
+  text-align: justify;
 }

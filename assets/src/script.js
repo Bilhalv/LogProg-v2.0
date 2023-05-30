@@ -24,12 +24,13 @@ select.addEventListener("change", function () {
       button.textContent = "Remove";
       button.addEventListener("click", removeArticle);
 
+      //combine the parts of the article
       article.appendChild(heading);
       article.appendChild(content);
       article.appendChild(button);
-
+      //make the article appears
       gallery.appendChild(article);
-
+      //make the article doesnt appears again
       selectedArticles.push(value);
     }
   }
@@ -39,11 +40,10 @@ function removeArticle() {
   var article = this.parentNode;
   var value = article.dataset.value;
 
+  //remove the related article
   article.parentNode.removeChild(article);
-
-  selectedArticles = selectedArticles.filter(function (item) {
-    return item !== value;
-  });
+  //remove that article from the selected articles list, so it can appears again
+  selectedArticles.splice(value)
 }
 
 function getArticleData(item) {
