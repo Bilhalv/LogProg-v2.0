@@ -34,6 +34,9 @@ select.addEventListener("change", function () {
 function createArticlePartElement(partData) {
   var partElement = document.createElement(partData.elementType);
   partElement.textContent = partData.content;
+  if ((partData.elementType) == "button"){
+    partElement.addEventListener("click", partData.function)
+  }
   return partElement;
 }
 
@@ -61,7 +64,9 @@ function getArticleData(item) {
     item3: {
       parts: [
         { elementType: "h3", content: "Article 3" },
-        { elementType: "p", content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." }
+        { elementType: "p", content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." },
+        { elementType: "button", content: "Clickme", function: removeArticle},
+        { elementType: "br", content: ""},
       ]
     },
     item4: {
