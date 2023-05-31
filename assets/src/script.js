@@ -14,60 +14,62 @@ select.addEventListener("change", function () {
       var article = document.createElement("div");
       article.classList.add("article");
 
-      var heading = document.createElement("h3");
-      heading.textContent = articleData.title;
-
-      var content = document.createElement("p");
-      content.textContent = articleData.content;
+      for (var j = 0; j < articleData.parts.length; j++) {
+        var partData = articleData.parts[j];
+        var partElement = createArticlePartElement(partData);
+        article.appendChild(partElement);
+      }
 
       var button = document.createElement("button");
       button.textContent = "Remove";
       button.addEventListener("click", removeArticle);
 
-      //combine the parts of the article
-      article.appendChild(heading);
-      article.appendChild(content);
       article.appendChild(button);
-      //make the article appears
       gallery.appendChild(article);
-      //make the article doesnt appears again
       selectedArticles.push(value);
     }
   }
 });
 
+function createArticlePartElement(partData) {
+  var partElement = document.createElement(partData.elementType);
+  partElement.textContent = partData.content;
+  return partElement;
+}
+
 function removeArticle() {
   var article = this.parentNode;
   var value = article.dataset.value;
-
-  //remove the related article
   article.parentNode.removeChild(article);
-  //remove that article from the selected articles list, so it can appears again
-  selectedArticles.splice(value)
+  selectedArticles.splice(value, 1);
 }
 
 function getArticleData(item) {
   var articles = {
     item1: {
-      title: "Article 1",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      parts: [
+        { elementType: "h3", content: "Article 1" },
+        { elementType: "p", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+      ]
     },
     item2: {
-      title: "Article 2",
-      content:
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      parts: [
+        { elementType: "h3", content: "Article 2" },
+        { elementType: "p", content: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+      ]
     },
     item3: {
-      title: "Article 3",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      parts: [
+        { elementType: "h3", content: "Article 3" },
+        { elementType: "p", content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris." }
+      ]
     },
     item4: {
-      title: "Article 4",
-      content:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-    },
+      parts: [
+        { elementType: "h3", content: "Article 4" },
+        { elementType: "p", content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore." }
+      ]
+    }
   };
-
   return articles[item];
 }
