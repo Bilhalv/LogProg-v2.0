@@ -1,6 +1,7 @@
 var select = document.getElementById("selectItems");
 var gallery = document.getElementById("selectedItemsGallery");
 var selectedArticles = [];
+var hr = document.createElement("hr");
 
 select.addEventListener("change", function () {
   var selectedOptions = select.selectedOptions;
@@ -38,7 +39,7 @@ function createArticlePartElement(partData) {
     partElement.addEventListener("click", partData.function);
   }
   if (partData.elementType == "div") {
-    partElement.id = "resultado";
+    partElement.id = partData.id;
   }
   return partElement;
 }
@@ -58,11 +59,11 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Sistema que lê notas de alunos e diz quais passaram e quais não, pode ser cancelado caso insira (fim).",
+            "Sistema que l\xEA notas de alunos e diz quais passaram e quais n\xE3o, pode ser cancelado caso insira (fim).",
         },
-        { elementType: "button", content: "Clickme", function: VetoresNotas },
+        { elementType: "button", content: "Iniciar", function: VetoresNotas },
         { elementType: "br", content: "" },
-        { elementType: "div", content: "" },
+        { elementType: "div", content: "", id: "VetoresNotas" },
         { elementType: "br", content: "" },
       ],
     },
@@ -72,11 +73,11 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Um programa que lê numeros até ser digitado 0 e depois informa quais são pares e quantos pares existem.",
+            "Um programa que l\xEA n\xFAmeros at\xE9 ser digitado 0 e depois informa quais s\xE3o pares e quantos pares existem.",
         },
-        { elementType: "button", content: "Clickme", function: VetoresNumeros },
+        { elementType: "button", content: "Iniciar", function: VetoresNumeros },
         { elementType: "br", content: "" },
-        { elementType: "div", content: "" },
+        { elementType: "div", content: "", id: "VetoresNumeros" },
         { elementType: "br", content: "" },
       ],
     },
@@ -86,9 +87,11 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+            "Um programa que leia o nome de 10 clubes. Ap\xF3s, liste os jogos com os clubes na ordem informada.",
         },
-        { elementType: "button", content: "Clickme", function: removeArticle },
+        { elementType: "button", content: "Iniciar", function: VetoresTimes },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "VetoresTimes" },
         { elementType: "br", content: "" },
       ],
     },
@@ -98,8 +101,16 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+            "L\xEA modelos e pre\xE7os de ve\xEDculos at\xE9 ser inserido 'Fim' e após, adiciona o valor do frete a cada ve\xEDculo.",
         },
+        {
+          elementType: "button",
+          content: "Iniciar",
+          function: VetoresVeiculos,
+        },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "VetoresVeiculos" },
+        { elementType: "br", content: "" },
       ],
     },
   };
@@ -109,8 +120,7 @@ function VetoresNotas() {
   let nom = [];
   let not = [];
   let con = 1;
-  var resultado = document.getElementById("resultado");
-  let hr = document.createElement("hr");
+  var resultado = document.getElementById("VetoresNotas");
 
   do {
     let nomtemp = prompt(`${con}o Aluno: `);
@@ -126,7 +136,6 @@ function VetoresNotas() {
   let ApTit = document.createElement("h4");
   ApTit.textContent = "Aprovados";
   let ApList = document.createElement("div");
-  console.log("-".repeat(20));
   for (let i = 0; i < nom.length; i++) {
     if (not[i] >= 7) {
       let ApListTemp = document.createElement("p");
@@ -138,7 +147,6 @@ function VetoresNotas() {
   let RpTit = document.createElement("h4");
   RpTit.textContent = "Reprovados";
   let RpList = document.createElement("div");
-  console.log("-".repeat(20));
   for (let i = 0; i < nom.length; i++) {
     if (not[i] < 7) {
       let RpListTemp = document.createElement("p");
@@ -165,9 +173,8 @@ function VetoresNotas() {
   resultado.appendChild(resulttemp);
 }
 function VetoresNumeros() {
-  var resultado = document.getElementById("resultado");
-  let hr = document.createElement("hr");
-  let ParlistTtl = document.createElement("div")
+  var resultado = document.getElementById("VetoresNumeros");
+  let ParlistTtl = document.createElement("div");
 
   let num = 0;
   let par = [];
@@ -183,31 +190,96 @@ function VetoresNumeros() {
   } while (true);
 
   for (let i = 0; i < par.length; i++) {
-    let ParListTemp = document.createElement("p")
-    ParListTemp.textContent += (par[i]);
-    ParlistTtl.appendChild(ParListTemp)
+    let ParListTemp = document.createElement("p");
+    ParListTemp.textContent += par[i];
+    ParlistTtl.appendChild(ParListTemp);
   }
-  let ParNumTtl = document.createElement("p")
-  ParNumTtl.textContent = `${par.length} Pares`
+  let ParNumTtl = document.createElement("p");
+  ParNumTtl.textContent = `${par.length} Pares`;
 
-  var ParList = document.createElement("div")
-  var ParListTitulo = document.createElement("h4")
-  ParListTitulo.textContent = "Pares da lista"
-  ParList.appendChild(ParListTitulo)
-  ParList.appendChild(hr)
-  ParList.appendChild(ParlistTtl)
-  ParNum.appendChild(hr)
+  var ParList = document.createElement("div");
+  var ParListTitulo = document.createElement("h4");
+  ParListTitulo.textContent = "Pares da lista";
+  ParList.appendChild(ParListTitulo);
+  ParList.appendChild(hr);
+  ParList.appendChild(ParlistTtl);
+  ParList.appendChild(hr);
 
-  var ParNum = document.createElement("div")
-  var ParNumTitulo = document.createElement("h4")
-  ParNumTitulo.textContent = "Total de Pares"
-  ParNum.appendChild(ParNumTitulo)
-  ParNum.appendChild(hr)
-  ParNum.appendChild(ParNumTtl)
+  var ParNum = document.createElement("div");
+  var ParNumTitulo = document.createElement("h4");
+  ParNumTitulo.textContent = "Total de Pares";
+  ParNum.appendChild(ParNumTitulo);
+  ParNum.appendChild(hr);
+  ParNum.appendChild(ParNumTtl);
 
   var resulttemp = document.createElement("div");
   resulttemp.appendChild(ParList);
   resulttemp.appendChild(ParNum);
 
   resultado.appendChild(resulttemp);
+}
+function VetoresTimes() {
+  var resultado = document.getElementById("VetoresTimes");
+  let jogosttl = document.createElement("div");
+
+  let times = [];
+  let clu = 1;
+
+  do {
+    let tim = prompt(`${clu}o Clube: `);
+    times.push(tim);
+    clu++;
+  } while (times.length < 10);
+
+  let jogostitulo = document.createElement("h4");
+  jogostitulo.textContent = "Jogos";
+
+  for (let i = 0; i < 10; i += 2) {
+    let jogostemp = document.createElement("p");
+    jogostemp.textContent = `${times[i]} x ${times[i + 1]}`;
+    jogosttl.appendChild(jogostemp);
+  }
+
+  let timesfim = document.createElement("div");
+  timesfim.appendChild(jogostitulo);
+  timesfim.appendChild(hr);
+  timesfim.appendChild(jogosttl);
+
+  resultado.appendChild(timesfim);
+}
+function VetoresVeiculos() {
+  var resultado = document.getElementById("VetoresVeiculos");
+  let carrttl = document.createElement("div");
+
+  let carro = [];
+  let preco = [];
+  let cont = 1;
+
+  do {
+    let carrotemp = prompt(`${cont}o Veiculo: `);
+    if (carrotemp.toUpperCase() == "FIM") {
+      break;
+    }
+    let precotemp = Number(prompt("Preco: R$"));
+
+    carro.push(carrotemp);
+    preco.push(precotemp);
+    cont++;
+  } while (true);
+  let frete = Number(prompt("Frete: R$"));
+  
+  let cartit = document.createElement("h4")
+  cartit.textContent = "Tabela de Preços (com Frete)"
+  for (let i = 0; i < carro.length; i++) {
+    let carrttltemp = document.createElement("p")
+    carrttltemp.textContent = `${carro[i]} - R$ ${(preco[i] + frete).toFixed(2)}`
+    carrttl.appendChild(carrttltemp)
+  }
+
+  let veiculosttl = document.createElement("div")
+  veiculosttl.appendChild(cartit)
+  veiculosttl.appendChild(hr)
+  veiculosttl.appendChild(carrttl)
+
+  resultado.appendChild(veiculosttl)
 }
