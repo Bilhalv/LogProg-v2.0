@@ -1,10 +1,14 @@
-var select = document.getElementById("selectItems");
+var select1 = document.getElementById("selectItems1");
+var select2 = document.getElementById("selectItems2");
 var gallery = document.getElementById("selectedItemsGallery");
-var selectedArticles = [];
 var hr = document.createElement("hr");
+var selectedArticles = [];
 
-select.addEventListener("change", function () {
-  var selectedOptions = select.selectedOptions;
+select1.addEventListener("change", handleSelection);
+select2.addEventListener("change", handleSelection);
+
+function handleSelection() {
+  var selectedOptions = this.selectedOptions;
 
   for (var i = 0; i < selectedOptions.length; i++) {
     var value = selectedOptions[i].value;
@@ -28,9 +32,11 @@ select.addEventListener("change", function () {
       article.appendChild(button);
       gallery.appendChild(article);
       selectedArticles.push(value);
+    } else {
+      alert("ERR0R");
     }
   }
-});
+}
 
 function createArticlePartElement(partData) {
   var partElement = document.createElement(partData.elementType);
@@ -53,6 +59,7 @@ function removeArticle() {
 
 function getArticleData(item) {
   var articles = {
+    //vetores
     item1: {
       parts: [
         { elementType: "h3", content: "Vetores 1" },
@@ -97,7 +104,7 @@ function getArticleData(item) {
     },
     item4: {
       parts: [
-        { elementType: "h3", content: "Article 4" },
+        { elementType: "h3", content: "Vetores 4" },
         {
           elementType: "p",
           content:
@@ -110,6 +117,115 @@ function getArticleData(item) {
         },
         { elementType: "br", content: "" },
         { elementType: "div", content: "", id: "VetoresVeiculos" },
+        { elementType: "br", content: "" },
+      ],
+    },
+    //Map e Filter
+    item5: {
+      parts: [
+        { elementType: "h3", content: "M&F 1" },
+        {
+          elementType: "p",
+          content:
+            "Dada uma lista de nomes, criar uma outra lista com os nomes em maiúsculas. Exibir as 2 listas.",
+        },
+        {
+          elementType: "button",
+          content: "Executar",
+          function: MepCaps,
+        },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "MepCaps" },
+        { elementType: "br", content: "" },
+      ],
+    },
+    item6: {
+      parts: [
+        { elementType: "h3", content: "M&F 2" },
+        {
+          elementType: "p",
+          content:
+            "Dada uma lista de idades, criar uma outra lista com as idades + 1. Exibir as 2 listas.",
+        },
+        {
+          elementType: "button",
+          content: "Executar",
+          function: MepIdade,
+        },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "MepIdade" },
+        { elementType: "br", content: "" },
+      ],
+    },
+    item7: {
+      parts: [
+        { elementType: "h3", content: "M&F 3" },
+        {
+          elementType: "p",
+          content:
+            "Dada uma lista de nomes, solicitar um nome, verificar e informar se ele consta ou não na lista.",
+        },
+        {
+          elementType: "button",
+          content: "Executar",
+          function: MepNomes,
+        },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "MepNomes" },
+        { elementType: "br", content: "" },
+      ],
+    },
+    item8: {
+      parts: [
+        { elementType: "h3", content: "M&F 4" },
+        {
+          elementType: "p",
+          content:
+            "Dada uma lista de salários, ler um valor e informar quais salários são maiores ou iguais ao informado ou indicar que não existe.",
+        },
+        {
+          elementType: "button",
+          content: "Executar",
+          function: MepSalarios,
+        },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "MepSalarios" },
+        { elementType: "br", content: "" },
+      ],
+    },
+    item9: {
+      parts: [
+        { elementType: "h3", content: "M&F 5" },
+        {
+          elementType: "p",
+          content:
+            "Dado uma lista de preços de veículos, criar uma outra lista com os valores da entrada (30% do preço). Exiba os 2 vetores.",
+        },
+        {
+          elementType: "button",
+          content: "Executar",
+          function: MepVeiculos,
+        },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "MepVeiculos" },
+        { elementType: "br", content: "" },
+      ],
+    },
+    item10: {
+      parts: [
+        { elementType: "h3", content: "M&F 6" },
+        {
+          elementType: "p",
+          content:
+            "Dada uma lista de quantidades de frutas, exibir a lista, a média das quantidades e a soma das quantidades.",
+        },
+        {
+          elementType: "button",
+          content: "Executar",
+          function: MepFrutas,
+        },
+        { elementType: "br", content: "" },
+        { elementType: "div", content: "", id: "MepFrutas" },
         { elementType: "br", content: "" },
       ],
     },
@@ -267,19 +383,53 @@ function VetoresVeiculos() {
     cont++;
   } while (true);
   let frete = Number(prompt("Frete: R$"));
-  
-  let cartit = document.createElement("h4")
-  cartit.textContent = "Tabela de Preços (com Frete)"
+
+  let cartit = document.createElement("h4");
+  cartit.textContent = "Tabela de Preços (com Frete)";
   for (let i = 0; i < carro.length; i++) {
-    let carrttltemp = document.createElement("p")
-    carrttltemp.textContent = `${carro[i]} - R$ ${(preco[i] + frete).toFixed(2)}`
-    carrttl.appendChild(carrttltemp)
+    let carrttltemp = document.createElement("p");
+    carrttltemp.textContent = `${carro[i]} - R$ ${(preco[i] + frete).toFixed(
+      2
+    )}`;
+    carrttl.appendChild(carrttltemp);
   }
 
-  let veiculosttl = document.createElement("div")
-  veiculosttl.appendChild(cartit)
-  veiculosttl.appendChild(hr)
-  veiculosttl.appendChild(carrttl)
+  let veiculosttl = document.createElement("div");
+  veiculosttl.appendChild(cartit);
+  veiculosttl.appendChild(hr);
+  veiculosttl.appendChild(carrttl);
 
-  resultado.appendChild(veiculosttl)
+  resultado.appendChild(veiculosttl);
+}
+function MepCaps() {
+  var resultado = document.getElementById("MepCaps");
+
+  let nomes = ["Silvana", "Juliano", "Ricardo", "Patrícia", "Bianca"];
+  let caps = nomes.map((x) => x.toUpperCase());
+
+  let p1 = document.createElement("p")
+  p2.textContent = "\nNomes: ", nomes.join(", ");
+  let p2 = document.createElement("p")
+  p2.textContent = "\nDestaques: ", caps.join(", "), "\n";
+
+  let capsttl = document.createElement("div")
+  capsttl.appendChild(p1)
+  capsttl.appendChild(p2)
+  
+  resultado.appendChild(capsttl);
+}
+function MepIdade() {
+
+}
+function MepNomes() {
+
+}
+function MepSalarios() {
+
+}
+function MepVeiculos() {
+
+}
+function MepFrutas() {
+  
 }
