@@ -71,3 +71,6 @@ button {
 .article p {
   text-align: justify;
 }
+.choosing{
+  display: flex;
+}
