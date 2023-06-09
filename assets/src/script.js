@@ -127,7 +127,7 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Dada uma lista de nomes, criar uma outra lista com os nomes em maiúsculas. Exibir as 2 listas.",
+            "Dada uma lista de nomes, criar uma outra lista com os nomes em mai\xFAsculas. Exibir as 2 listas.",
         },
         {
           elementType: "button",
@@ -163,7 +163,7 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Dada uma lista de nomes, solicitar um nome, verificar e informar se ele consta ou não na lista.",
+            "Dada uma lista de nomes, solicitar um nome, verificar e informar se ele consta ou n\xE3o na lista.",
         },
         {
           elementType: "button",
@@ -181,7 +181,7 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Dada uma lista de salários, ler um valor e informar quais salários são maiores ou iguais ao informado ou indicar que não existe.",
+            "Dada uma lista de sal\xE1rios, ler um valor e informar quais sal\xE1rios s\xE3o maiores ou iguais ao informado ou indicar que n\xE3o existe.",
         },
         {
           elementType: "button",
@@ -199,7 +199,7 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Dado uma lista de preços de veículos, criar uma outra lista com os valores da entrada (30% do preço). Exiba os 2 vetores.",
+            "Dado uma lista de pre\xE7os de ve\xEDculos, criar uma outra lista com os valores da entrada (30% do pre\xE7o). Exiba os 2 vetores.",
         },
         {
           elementType: "button",
@@ -217,7 +217,7 @@ function getArticleData(item) {
         {
           elementType: "p",
           content:
-            "Dada uma lista de quantidades de frutas, exibir a lista, a média das quantidades e a soma das quantidades.",
+            "Dada uma lista de quantidades de frutas, exibir a lista, a m\xE9dia das quantidades e a soma das quantidades.",
         },
         {
           elementType: "button",
@@ -404,32 +404,102 @@ function VetoresVeiculos() {
 function MepCaps() {
   var resultado = document.getElementById("MepCaps");
 
-  let nomes = ["Silvana", "Juliano", "Ricardo", "Patrícia", "Bianca"];
+  let nomes = ["Silvana", "Juliano", "Ricardo", "Patr\xEDcia", "Bianca"];
   let caps = nomes.map((x) => x.toUpperCase());
 
-  let p1 = document.createElement("p")
-  p2.textContent = "\nNomes: ", nomes.join(", ");
-  let p2 = document.createElement("p")
-  p2.textContent = "\nDestaques: ", caps.join(", "), "\n";
+  let p1 = document.createElement("p");
+  p1.textContent = `\nNomes: ${nomes.join(", ")}`;
+  let p2 = document.createElement("p");
+  p2.textContent = `\nDestaques: ${caps.join(", ")}\n`;
 
-  let capsttl = document.createElement("div")
-  capsttl.appendChild(p1)
-  capsttl.appendChild(p2)
-  
+  let capsttl = document.createElement("div");
+  capsttl.appendChild(p1);
+  capsttl.appendChild(p2);
+
   resultado.appendChild(capsttl);
 }
 function MepIdade() {
+  let idade1 = [18, 24, 16, 25, 32, 30];
+  let idade2 = idade1.map((x) => x + 1);
+  var resultado = document.getElementById("MepIdade");
+  let idadttl = document.createElement("div");
 
+  let p1 = document.createElement("p")
+  p1.textContent = (`Idades em 2023: ${idade1.join(", ")}`);
+  let p2 = document.createElement("p")
+  p2.textContent = (`Idades em 2024: ${idade2.join(", ")}`);
+
+  idadttl.appendChild(p1)
+  idadttl.appendChild(p2)
+
+  resultado.appendChild(idadttl)
 }
 function MepNomes() {
+  var resultado = document.getElementById("MepNomes");
+  let nomettl = document.createElement("div");
+  let alunos = ["Silvana", "Juliano", "Ricardo", "Patr\xEDcia", "Bianca"];
 
+  nomettl.textContent = (`Alunos: ${alunos.join(", ")}`);
+  let pesq = prompt("Pesquisar aluno: ");
+  let pos = alunos.indexOf(pesq);
+
+  if (pos == -1) {
+    alert("Aluno n\xE3o encontrado");
+  } else {
+    alert(`Consta na ${pos + 1}ª posi\xE7\xE3o`);
+  }
+  resultado.appendChild(nomettl)
 }
 function MepSalarios() {
+  var resultado = document.getElementById("MepSalarios");
+  let salttl = document.createElement("div");
+  let salarios = [2300, 3000, 1900, 4500, 2550, 2800];
+  let p1 = document.createElement("p")
+  p1.textContent = (`\nSal\xE1rios: ${salarios.join(", ")}`);
+  let pesq = Number(prompt("Valor M\xEDnimo: "));
+  let ttl = salarios.filter((x) => x >= pesq);
+  
+  let p2 = document.createElement("p")
+  p2.textContent = (`Maiores ou iguais: ${ttl.join(", ")}`);
 
+  salttl.appendChild(p1)
+  salttl.appendChild(p2)
+
+  resultado.appendChild(salttl)
 }
 function MepVeiculos() {
+  var resultado = document.getElementById("MepVeiculos");
+  let veittl = document.createElement("div");
+  let normal = [40000, 50000, 32000, 60000, 45000];
+  let entrada = normal.map((x) => x * 0.3);
 
+  let p1 = document.createElement("p")
+  p1.textContent = (`\nR$ dos Ve\xEDculos: ${normal.join(", ")}`);
+  let p2 = document.createElement("p")
+  p2.textContent = (`R$ das Entradas: ${entrada.join(", ")}`);
+
+  veittl.appendChild(p1)
+  veittl.appendChild(p2)
+
+  resultado.appendChild(veittl)
 }
 function MepFrutas() {
+  var resultado = document.getElementById("MepFrutas");
+  let frutttl = document.createElement("div");
+  let list = [4, 12, 20, 30, 15, 18];
+  let soma = list.reduce((sum, num) => sum + num);
+  let media = soma / list.length;
+
+  let p1 = document.createElement("p")
+  p1.textContent = (`Quantidades: ${list.join(", ")}`);
+  let p2 = document.createElement("p")
+  p2.textContent = (`M\xE9dia: ${media}`);
+  let p3 = document.createElement("p")
+  p3.textContent = (`Soma: ${soma}`);
+
+  frutttl.appendChild(p1)
+  frutttl.appendChild(p2)
+  frutttl.appendChild(p3)
   
+  resultado.appendChild(frutttl)
 }
